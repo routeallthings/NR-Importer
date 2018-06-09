@@ -433,16 +433,39 @@ for rowdata in xlhelper.sheet_to_dict(excelfilelocation,'FinalData'):
 			ET.SubElement(dnsearchoption, "number").text = '15'
 			ET.SubElement(dnsearchoption, "value").text = DomainName
 			ET.SubElement(dnsearchoption, "optionDefinitionSetName").text = 'dhcp-config'
-			# Scope - embeddedPolicy - embeddedPolicy - OptionItems - DomainSearchName
+			# Scope - embeddedPolicy - embeddedPolicy - OptionItems - Option150
 			try:
 				Option150 = rowdata.get('Option150').encode('utf-8')
 			except:
 				Option150 = rowdata.get('Option150')
 				Option150 = str(Option150)
-			tftpserveroption = ET.SubElement (dhcpoptionlist, "OptionItem")
-			ET.SubElement(tftpserveroption, "number").text = '150'
-			ET.SubElement(tftpserveroption, "value").text = Option150
-			ET.SubElement(tftpserveroption, "optionDefinitionSetName").text = 'dhcp-config'
+			if not 'None' in Option150:
+				tftpserveroption = ET.SubElement (dhcpoptionlist, "OptionItem")
+				ET.SubElement(tftpserveroption, "number").text = '150'
+				ET.SubElement(tftpserveroption, "value").text = Option150
+				ET.SubElement(tftpserveroption, "optionDefinitionSetName").text = 'dhcp-config'
+			# Scope - embeddedPolicy - embeddedPolicy - OptionItems - Option43
+			try:
+				Option43 = rowdata.get('Option43').encode('utf-8')
+			except:
+				Option43 = rowdata.get('Option43')
+				Option43 = str(Option43)
+			if not 'None' in Option43:
+				tftpserveroption = ET.SubElement (dhcpoptionlist, "OptionItem")
+				ET.SubElement(tftpserveroption, "number").text = '43'
+				ET.SubElement(tftpserveroption, "value").text = Option43
+				ET.SubElement(tftpserveroption, "optionDefinitionSetName").text = 'dhcp-config'
+			# Scope - embeddedPolicy - embeddedPolicy - OptionItems - Option60
+			try:
+				Option60 = rowdata.get('Option60').encode('utf-8')
+			except:
+				Option60 = rowdata.get('Option60')
+				Option60 = str(Option60)
+			if not 'None' in Option60:
+				tftpserveroption = ET.SubElement (dhcpoptionlist, "OptionItem")
+				ET.SubElement(tftpserveroption, "number").text = '60'
+				ET.SubElement(tftpserveroption, "value").text = Option60
+				ET.SubElement(tftpserveroption, "optionDefinitionSetName").text = 'dhcp-config'
 			# Make XML pretty
 			xmldata = ET.tostring(scoperoot)
 			xmldata = xml.dom.minidom.parseString(xmldata)
